@@ -1,0 +1,3 @@
+#service-name: # 要负载均衡访问的服务器名称
+#  ribbon:
+#    NFLoadBalancerRuleClassName: com.alibaba.cloud.nacos.ribbon.NacosRule # 使用随机策略

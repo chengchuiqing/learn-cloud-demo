@@ -1,0 +1,24 @@
+server:
+  port: ${port}
+spring:
+  application:
+    name: userservice
+  profiles:
+    active: dev  # 开发环境
+  cloud:
+    nacos:
+      config:
+        file-extension: yml
+        server-addr: 192.168.31.46:8848
+        group: DEFAULT_GROUP
+        namespace: 9b589f04-02cf-4664-9d6b-e8a522fc3786
+      discovery:
+        server-addr: 192.168.31.46:8848
+        cluster-name: ${cluster}
+        namespace: 9b589f04-02cf-4664-9d6b-e8a522fc3786
+      server-addr: 192.168.31.46:8848
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8080
+
+      web-context-unify: false  # 关闭context收敛

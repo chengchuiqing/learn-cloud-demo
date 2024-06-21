@@ -1,0 +1,13 @@
+# 注意：基础模块（或称为依赖模块）中的`application.yml`配置文件不会自动应用于主应用程序。
+# 这是因为Spring Boot默认只会加载主应用程序中的`application.yml`配置文件。
+# 所以最好使用配置类的方式，或者将下面配置合并到主应用程序的`application.yml`中
+
+feign:
+  client:
+    config:
+      default:
+        loggerLevel: FULL
+  httpclient:
+    enabled: true
+    max-connections: 200  # 最大连接数量
+    max-connections-per-route: 50  # 每个路径的最大连接数

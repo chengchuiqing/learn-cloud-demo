@@ -1,0 +1,47 @@
+server:
+  port: ${port}
+spring:
+  application:
+    name: order-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/cloud_order?useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+      discovery:
+        cluster-name: FZ
+        namespace: 9b589f04-02cf-4664-9d6b-e8a522fc3786
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8080
+
+
+mybatis:
+  type-aliases-package: cn.itcast.user.pojo
+  configuration:
+    map-underscore-to-camel-case: true
+logging:
+  level:
+    cn.itcast: debug
+    com.qing: debug  # 注意要设置SpringBoot的日志级别，否者Fegin的日志不会打印
+  pattern:
+    dateformat: MM-dd HH:mm:ss:SSS
+
+user-service:  # 这个名字不能乱写，一定写的是要负载均衡访问的服务器名称
+  ribbon:
+    NFLoadBalancerRuleClassName: com.alibaba.cloud.nacos.ribbon.NacosRule # 使用随机策略，这个规则优先会寻找与自己同集群的服务
+
+
+#feign:
+#  client:
+#    config:
+#      default:
+#        loggerLevel: FULL
+#        connectTimeout: 5000
+#        readTimeout: 5000
+#logging:
+#  level:
+#    root: debug  # 注意要设置SpringBoot的日志级别，否者Fegin的日志不会打印
